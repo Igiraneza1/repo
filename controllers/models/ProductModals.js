@@ -1,5 +1,6 @@
 import { array } from "i/lib/util";
 import mongoose from "mongoose";
+import cloudinary from "";
 const {model, Schema} = mongoose;
 
 const productSchema = new Schema(
