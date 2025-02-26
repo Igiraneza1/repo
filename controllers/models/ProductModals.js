@@ -1,6 +1,5 @@
-import { array } from "i/lib/util";
+
 import mongoose from "mongoose";
-import cloudinary from "";
 const {model, Schema} = mongoose;
 
 const productSchema = new Schema(
@@ -19,7 +18,7 @@ const productSchema = new Schema(
             default: 0
         },
         images:{
-            type:array,
+            type:[{ name: String, value: String }] ,
             requred: false
         },
         message:{

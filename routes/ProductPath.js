@@ -1,11 +1,13 @@
-import { CreateProduct, getAllProduct} from "../controllers/ProductController";
+import { CreateProduct } from "../controllers/ProductController.js";
 import express from "express";
 import configureMulter from "../utils/Multer.js";
 const productRouter = express();
 
-productRouter.post("createProduct", upload, createProduct);
-productRouter.get("getAllProduct", getAllProduct);
-
 const upload = configureMulter();
+
+productRouter.post("/createProduct", upload, CreateProduct);
+
+
+
 
 export default productRouter;

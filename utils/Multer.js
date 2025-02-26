@@ -23,12 +23,12 @@ const storage = new CloudinaryStorage({
     }
 
     return {
-      folder: folder, // The folder in Cloudinary where files will be uploaded
-      resource_type: "auto", // Automatically detect file type
-      public_id: `${Date.now()}-${file.originalname.split(".")[0]}` // Custom file name
+        folder: folder, // The folder in Cloudinary where files will be uploaded
+        resource_type: "auto", // Automatically detect file type
+        public_id:` ${Date.now()}-${file.originalname.split(".")[0]},` // Custom file name
+      };
     },
-  },
-});
+  });
 
 // Configure multer with Cloudinary storage
 const configureMulter = () => {

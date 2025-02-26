@@ -1,4 +1,4 @@
-import Product from "./models/ProductModals";
+import Product from "./models/ProductModals.js";
 export const CreateProduct = async(req,res)=>{
     try{
         if(!req.files.images || req.files.images.length === 0){
@@ -7,10 +7,11 @@ export const CreateProduct = async(req,res)=>{
 
         const result = await cloudinary.uploader.upload(req.files.image[0].path);
 
-        const images = result.secure_url;
+        
 
-        const{product_names, product_price, product_discount, message,status}=req.body;
-        const newProduct = newProduct({product_names, product_price, product_discount, message,status});
+        const{product_names, product_price, product_discount, message}=req.body;
+        const images = result.secure_url;
+        const newProduct = new Product({product_names, product_price, product_discount, message,images});
 
         await newProduct.save();
 
