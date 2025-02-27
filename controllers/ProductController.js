@@ -1,4 +1,4 @@
-import Product from "./models/ProductModals.js";
+import Product from "../controllers/models/ProductModals.js";
 export const CreateProduct = async(req,res)=>{
     try{
         if(!req.files.images || req.files.images.length === 0){
