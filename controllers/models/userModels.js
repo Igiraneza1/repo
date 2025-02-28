@@ -23,11 +23,11 @@ const userschema = Schema(
             enum:["user", "admin"]
         },
         tokens:{
-            accessToken:{type: String}
+            accessToken:{type: String, default:" "}
         }
     }
 )
-const User = model("users", userschema);
+const User = model("user", userschema);
 
 export default User;
 
