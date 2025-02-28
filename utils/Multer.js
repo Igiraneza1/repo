@@ -2,13 +2,11 @@ import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import multer from "multer";
 
-// Configure Cloudinary storage for different types of files
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: (req, file) => {
     let folder;
 
-    // Determine the folder based on the field name
     if (file.fieldname === "videos") {
       folder = "videos";
     } else if (file.fieldname === "documents") {
@@ -19,23 +17,23 @@ const storage = new CloudinaryStorage({
     ) {
       folder = "images";
     } else {
-      throw new Error("Invalid field name"); // Handle unexpected field names
+      throw new Error("Invalid field name"); 
     }
 
     return {
-        folder: folder, // The folder in Cloudinary where files will be uploaded
-        resource_type: "auto", // Automatically detect file type
-        public_id:` ${Date.now()}-${file.originalname.split(".")[0]},` // Custom file name
+        folder: folder, 
+        resource_type: "auto", 
+        public_id:` ${Date.now()}-${file.originalname.split(".")[0]},`
       };
     },
   });
 
-// Configure multer with Cloudinary storage
+
 const configureMulter = () => {
   const upload = multer({
     storage,
     limits: {
-      fileSize: 50 * 1024 * 1024, // Max file size of 50 MB
+      fileSize: 50 * 1024 * 1024, 
     },
     fileFilter(req, file, cb) {
       const allowedFormats = {
@@ -47,10 +45,10 @@ const configureMulter = () => {
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         ],
         images: ["image/jpeg", "image/png", "image/gif", "image/webp", "image/jpg"],
-        imagePreview: ["image/jpeg", "image/png"], // Specify allowed formats for imagePreview
+        imagePreview: ["image/jpeg", "image/png"], 
       };
 
-      // Check if the file type is allowed
+      
       if (
         allowedFormats[file.fieldname] &&
         allowedFormats[file.fieldname].includes(file.mimetype)
